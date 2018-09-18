@@ -47,7 +47,15 @@ namespace CPE200Lab1
                     return PercentCalculate(parts[1], parts[0], parts[2], 4);
                 }
             }
-            if (isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2]))
+            try
+            {
+                return calculate(parts[1], parts[0], parts[2], 4); //try to calculating ถ้ามีตัวเดียวก็จะไม่เป็นตาม condition
+            }
+            catch
+            {
+                return "E";
+            }
+           /* if (isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2]))
             {
                 return calculate(parts[1], parts[0], parts[2], 4);
             }
@@ -59,8 +67,8 @@ namespace CPE200Lab1
             else
             {
                 return "E";
-            }
-
+            }*/
+           
 
         }
         public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
@@ -142,7 +150,19 @@ namespace CPE200Lab1
                     return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)).ToString();
                 case "÷":
                     // Not allow devide be zero
-                    if (secondOperand != "0")
+                    //if (secondOperand != "0")
+                    try
+                    {
+                        if (secondOperand == "0") {
+                            throw (new DivideByZeroException());
+                        }
+
+                        return (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand)).ToString();
+                    }
+                    catch(DivideByZeroException ex)
+                    {
+                        return "E";
+                    }
                     {
                         double result;
                         string[] parts;
