@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CPE200Lab1
 {
-    public class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : TheCalculatorEngine
     {
         private bool isNumber(string str)
         {
@@ -28,7 +28,7 @@ namespace CPE200Lab1
             return false;
         }
 
-        public  string  Process(string str)
+        public  string  calculate(string str)
         {
             Stack<string> numbers = new Stack<string>();
             string[] parts = str.Split(' ');
