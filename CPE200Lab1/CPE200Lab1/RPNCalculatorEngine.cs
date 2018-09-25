@@ -22,13 +22,13 @@ namespace CPE200Lab1
                 case "-":
                 case "X":
                 case "÷":
-               // case "1/x":
+                    // case "1/x":
                     return true;
             }
             return false;
         }
 
-        public  string  Process(string str)
+        public string Process(string str)
         {
             Stack<string> numbers = new Stack<string>();
             string[] parts = str.Split(' ');
@@ -51,29 +51,36 @@ namespace CPE200Lab1
                 }
                 else if (parts[i] == "%")
                 {
-                    string st, nd;
-                    if (numbers.Count < 2)
+                    try
+                    {
+                        string st, nd;
+                        nd = numbers.Peek();
+                        numbers.Pop();
+                        st = numbers.Peek();
+                        numbers.Pop();
+                        numbers.Push(PercentResult(st, nd, 8));
+                    }
+                    catch
                     {
                         return "E";
                     }
-                    nd = numbers.Peek();
-                    numbers.Pop();
-                    st = numbers.Peek();
-                    numbers.Pop();
-                    numbers.Push(PercentResult(st, nd, 8));
                 }
                 else if (isOperator(parts[i]))
                 {
-                    if (numbers.Count < 2)
+                    try
+                    {
+                        string st, nd;
+                        nd = numbers.Peek();
+                        numbers.Pop();
+                        st = numbers.Peek();
+                        numbers.Pop();
+                        numbers.Push(calculate(parts[i], st, nd, 8));
+                    }
+                    catch
                     {
                         return "E";
                     }
-                    string st, nd;
-                    nd = numbers.Peek();
-                    numbers.Pop();
-                    st = numbers.Peek();
-                    numbers.Pop();
-                    numbers.Push(calculate(parts[i], st, nd, 8));
+
                 }
 
             }
