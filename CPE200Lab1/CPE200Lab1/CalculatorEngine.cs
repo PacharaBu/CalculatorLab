@@ -8,10 +8,10 @@ namespace CPE200Lab1
 { 
     public class CalculatorEngine
     {   /// <summary>
-    /// 
+    /// เช็คว่าinputที่ให้มามีเลขมั้ย
     /// </summary>
     /// <param name="str"></param>
-    /// <returns></returns>
+    /// <returns>return ว่ามีตัวเลขหรือไม่</returns>
         private bool isNumber(string str)
         {
             double retNum;
