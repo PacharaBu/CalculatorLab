@@ -7,13 +7,21 @@ using System.Threading.Tasks;
 namespace CPE200Lab1
 {
     public class RPNCalculatorEngine : CalculatorEngine
-    {
+    {  /// <summary>
+    /// เป็นการแปลงค่าstrของinputให้เป็นdbl
+    /// </summary>
+    /// <param name="str">ชุดข้อมูลที่inputเข้ามา</param>
+    /// <returns>แปลงค่าstrเป็นdbl</returns>
         private bool isNumber(string str)
         {
             double retNum;
             return Double.TryParse(str, out retNum);
         }
-
+    /// <summary>
+    /// เป็นการเช็คว่าinputที่ให้มามีoperatorมั้ย
+    /// </summary>
+    /// <param name="str">ชุดข้อมูลที่inputเข้ามา</param>
+    /// <returns>เช็คว่ามีoperatorมั้ย</returns>
         private bool isOperator(string str)
         {
             switch (str)
@@ -27,7 +35,11 @@ namespace CPE200Lab1
             }
             return false;
         }
-
+        /// <summary>
+        /// เป็นการคำนวณinputที่เราได้มาแบบRPN
+        /// </summary>
+        /// <param name="str">ชุดข้อมูลที่inputเข้ามา</param>
+        /// <returns>ผลลัพธ์หลังการคำนวณ</returns>
         public string Process(string str)
         {
             Stack<string> numbers = new Stack<string>();

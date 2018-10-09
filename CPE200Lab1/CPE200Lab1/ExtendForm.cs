@@ -18,7 +18,7 @@ namespace CPE200Lab1
         private double memory;
         private CalculatorEngine engine;
         private RPNCalculatorEngine RPNengine;
-
+       
         public ExtendForm()
         {
             InitializeComponent();
@@ -28,7 +28,7 @@ namespace CPE200Lab1
             btnMR.Enabled = false;
 
         }
-        
+       
         public bool isOperator(char ch)
         {
             switch (ch)
@@ -54,7 +54,7 @@ namespace CPE200Lab1
             }
             else return false;
         }
-
+       
         private void btnNumber_Click(object sender, EventArgs e)
         {
             if (lblDisplay.Text is "Error")

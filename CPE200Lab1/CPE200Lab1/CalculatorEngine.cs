@@ -5,15 +5,23 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace CPE200Lab1
-{
+{ 
     public class CalculatorEngine
-    {
+    {   /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="str"></param>
+    /// <returns></returns>
         private bool isNumber(string str)
         {
             double retNum;
             return Double.TryParse(str, out retNum);
         }
-
+        /// <summary>
+        /// ตรวจสอบว่ามี operator หรือยัง
+        /// </summary>
+        /// <param name="str">ส่ง operator ไป</param>
+        /// <returns>return ว่ามีoperatorหรือไม่</returns>
         private bool isOperator(string str)
         {
             switch (str)
@@ -27,9 +35,13 @@ namespace CPE200Lab1
             }
             return false;
         }
-      
+      /// <summary>
+      /// สร้างกรณีเฉพาะสำหรับ operatorบางตัวให้รับ input ค่าเดียวไดั
+      /// </summary>
+      /// <param name="str">ส่ง operator ไป</param>
+      /// <returns>return ว่าเป็นoperatorที่ต้องยกเว้นมั้ย(สามารถให้ใช้inputตัวเดียวได้)</returns>
         public bool OnlyOneOperand(string str)  //function use for only one operate ex. 1/2 sqrt(4)
-        {
+        {   
             if (str == "1/x" || str == "√")
             {
                 return true;
@@ -37,6 +49,11 @@ namespace CPE200Lab1
             else return false;
 
         }
+        /// <summary>
+        /// เป็นการเอาค่าinputมาแยกใส่ในarray
+        /// </summary>
+        /// <param name="str">ส่งค่าตัววเลข + operator</param>
+        /// <returns>ข้อมูลที่ถูกใส่ในarray</returns>
         public string Process(string str)
         {
             string[] parts = str.Split(' ');
@@ -71,6 +88,13 @@ namespace CPE200Lab1
            
 
         }
+        /// <summary>
+        /// เป็นการคำนวณของ sqrt & 1/x (input เลขตัวเดียว)
+        /// </summary>
+        /// <param name="operate">ค่าของoperator</param>
+        /// <param name="operand">ค่าของตัวเลขที่ถูกinput</param>
+        /// <param name="maxOutputSize">ขนาดของoutputที่จะแสดงผล</param>
+        /// <returns>ผลลัพธ์จากการคำนวณ</returns>
         public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
         {
             switch (operate)
@@ -118,6 +142,14 @@ namespace CPE200Lab1
             }
             return "E";
         }
+        /// <summary>
+        /// การคำนวณค่าของ input แบบปกติ
+        /// </summary>
+        /// <param name="operate">ค่าของ operator</param>
+        /// <param name="firstOperand">เลขตัวแรกที่เราinput</param>
+        /// <param name="secondOperand">เลขตัวที่2ที่เราinput</param>
+        /// <param name="maxOutputSize">ขนาดของoutputที่จะแสดงผล</param>
+        /// <returns>ผลลัพธ์จากการคำนวณ</returns>
         public string PercentCalculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)    // return case of secondoperand
         {
             switch (operate)
@@ -138,6 +170,14 @@ namespace CPE200Lab1
 
             return (Convert.ToDouble(firstOperand) * (0.01 * Convert.ToDouble(secondOperand))).ToString();
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="operate"></param>
+        /// <param name="firstOperand"></param>
+        /// <param name="secondOperand"></param>
+        /// <param name="maxOutputSize"></param>
+        /// <returns></returns>
         public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
         {
             switch (operate)
